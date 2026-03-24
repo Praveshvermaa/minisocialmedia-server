@@ -36,7 +36,7 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 
   // Self-ping every 5 minutes to keep the server alive
-  const SERVER_URL = process.env.SERVER_URL || `http://localhost:${PORT}`;
+  const SERVER_URL = "https://minisocialmedia-server.onrender.com" || `http://localhost:${PORT}`;
   setInterval(() => {
     const http = require('http');
     http.get(SERVER_URL, (res) => {
