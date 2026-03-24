@@ -36,10 +36,10 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 
   // Self-ping every 5 minutes to keep the server alive
-  const SERVER_URL = "https://minisocialmedia-server.onrender.com" || `http://localhost:${PORT}`;
+  const SERVER_URL = "https://minisocialmedia-server.onrender.com";
+  const pingModule = SERVER_URL.startsWith('https') ? require('https') : require('http');
   setInterval(() => {
-    const http = require('http');
-    http.get(SERVER_URL, (res) => {
+    pingModule.get(SERVER_URL, (res) => {
       console.log(`[Keep-Alive] Pinged server — Status: ${res.statusCode}`);
     }).on('error', (err) => {
       console.error('[Keep-Alive] Ping failed:', err.message);
